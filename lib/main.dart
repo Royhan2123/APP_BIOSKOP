@@ -1,5 +1,6 @@
 import 'package:apk_bioskop/cubit/auth_cubit.dart';
 import 'package:apk_bioskop/cubit/bottom_cubit.dart';
+import 'package:apk_bioskop/cubit/gambar_cubit.dart';
 import 'package:apk_bioskop/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class NewApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthCubit(),),
         BlocProvider(create: (context) => BottomCubit(),),        
+        BlocProvider(create: (context) => GambarCubit(),),        
         
       ],
       child: const MaterialApp(

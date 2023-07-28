@@ -1,8 +1,9 @@
 import 'package:apk_bioskop/models/auth_services.dart';
-import 'package:apk_bioskop/models/user_services.dart';
-import 'package:apk_bioskop/models/users_models.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+
+import '../services/user_services.dart';
+import '../services/users_models.dart';
 
 part 'auth_state.dart';
 

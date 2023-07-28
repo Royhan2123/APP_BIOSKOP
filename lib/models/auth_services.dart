@@ -1,6 +1,8 @@
-import 'package:apk_bioskop/models/user_services.dart';
-import 'package:apk_bioskop/models/users_models.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../services/user_services.dart';
+import '../services/users_models.dart';
 
 class AuthServices {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -20,6 +22,7 @@ class AuthServices {
           email: email,
           password: password,
           konfirmpassword: konfirmpassword);
+      await UserServices().dataUser(user);
       return user;
     } catch (e) {
       throw e.toString();
@@ -34,7 +37,7 @@ class AuthServices {
       UserCredential userCredential = await firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
       UserModels user = await UserServices().dataId(userCredential.user!.uid);
-      return user;  
+      return user;
     } catch (e) {
       throw e.toString();
     }

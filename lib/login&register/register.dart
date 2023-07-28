@@ -214,7 +214,7 @@ class _RegisterState extends State<Register> {
                   ],
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 35,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
