@@ -1,9 +1,14 @@
+import 'package:apk_bioskop/card_nonton.dart';
 import 'package:apk_bioskop/cubit/auth_cubit.dart';
+import 'package:apk_bioskop/cubit/gambar_nonton_cubit.dart';
+import 'package:apk_bioskop/card_carou.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import '../models/gambar_models.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -13,15 +18,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   void initState() {
-    fetchCarouelImages();
+    gambarCarouel();
+    context.read<GambarNontonCubit>().fetchGambar();
     super.initState();
   }
+
   List<String> gambar = [];
 
-  fetchCarouelImages() async {
+  gambarCarouel() async {
     var firestoreinstance = FirebaseFirestore.instance;
 
     QuerySnapshot querySnapshot =
@@ -39,108 +45,145 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    Widget header() {
-      return AppBar(
-        backgroundColor: const Color.fromARGB(255, 25, 2, 63),
-        title: SizedBox(
-          width: 250,
-          height: 40,
-          child: TextField(
-            style: GoogleFonts.poppins(color: Colors.white, fontSize: 13),
-            cursorColor: Colors.white,
-            decoration: InputDecoration(
-              filled: true,
-              hoverColor: Colors.white,
-              alignLabelWithHint: true,
-              fillColor: const Color.fromARGB(255, 49, 15, 105),
-              contentPadding: const EdgeInsets.all(8),
-              border: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                ),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.deepPurple),
-                  borderRadius: BorderRadius.circular(20)),
-              prefixIcon: const Icon(
-                Icons.search_outlined,
-                color: Colors.grey,
-              ),
-              hintText: "Cari di M-tix",
-              hintStyle: GoogleFonts.poppins(color: Colors.grey, fontSize: 13),
-            ),
-          ),
-        ),
-        actions: [
-          Container(
-            margin: const EdgeInsets.only(
-              right: 10,
-              left: 10,
-            ),
-            child: const Row(
-              children: [
-                Icon(
-                  Icons.notifications_active_outlined,
-                  color: Colors.white,
-                  size: 25,
-                ),
-              ],
-            ),
-          )
-        ],
-      );
-    }
-
     Widget name() {
       return BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           if (state is AuthSucces) {
             return Container(
               margin: const EdgeInsets.only(left: 20, right: 15, top: 20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Hello ${state.user.name}",
-                          style: GoogleFonts.poppins(
-                              color: Colors.white, fontSize: 20),
-                        ),
-                        Text(
-                          "Welcome to M-Tix",
-                          style: GoogleFonts.poppins(
-                              color: Colors.grey, fontSize: 15),
-                        ),
-                        Text(
-                          "what movie would you\nlike to watch today?",
-                          style: GoogleFonts.poppins(
-                              color: Colors.grey, fontSize: 15),
-                        ),
-                      ],
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: SizedBox(
-                        width: 75,
-                        height: 75,
-                        child: CircleAvatar(
-                          backgroundColor:
-                              const Color.fromARGB(255, 188, 188, 188),
-                          child: Container(
-                            width: 33,
-                            height: 33,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        "assets/images/camera.png"))),
+              child: Container(
+                height: 190,
+                decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 75, 45, 122),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color.fromARGB(255, 147, 82, 183),
+                          blurRadius: 25,
+                          offset: Offset(0, 2))
+                    ],
+                    borderRadius: BorderRadius.circular(15)),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Hello ${state.user.name}",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white, fontSize: 20),
+                                ),
+                                Text(
+                                  "Welcome to M-Tix",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.grey, fontSize: 15),
+                                ),
+                                Text(
+                                  "what movie would you\nlike to watch today?",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.grey, fontSize: 15),
+                                ),
+                              ],
+                            ),
                           ),
-                        )),
+                          InkWell(
+                            onTap: () {},
+                            child: SizedBox(
+                                width: 75,
+                                height: 75,
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/images/camera.png"),
+                                            fit: BoxFit.cover)),
+                                  ),
+                                )),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        height: 40,
+                        margin: const EdgeInsets.only(top: 10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border:
+                                Border.all(width: 1.5, color: Colors.white)),
+                        child: Row(
+                          children: [
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              width: 20,
+                              height: 20,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/images/pay2.png"))),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                                NumberFormat.currency(
+                                        locale: "id",
+                                        symbol: "IDR ",
+                                        decimalDigits: 0)
+                                    .format(state.user.balance),
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white, fontSize: 15)),
+                            const SizedBox(
+                              width: 25,
+                            ),
+                            const Center(
+                              child: Text(
+                                "|",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              width: 30,
+                              height: 30,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/images/transfer.png"))),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            const Text(
+                              "Transfer",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Poppins",
+                                  fontSize: 15),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             );
           }
@@ -149,7 +192,7 @@ class _HomeState extends State<Home> {
       );
     }
 
-    Widget content() {
+    Widget gambarBioskop() {
       return Container(
         margin: const EdgeInsets.only(left: 20, right: 15, top: 30),
         child: Column(
@@ -196,28 +239,97 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            Container(
-        height: 350,
-        margin: const EdgeInsets.only(top: 20),
-        child: CarouselSlider(
-            items: gambar.map((item) {
-              return Container(
-                margin: const EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                        image: NetworkImage(item), fit: BoxFit.cover),
-                    border: Border.all(width: 10, color: Colors.white)),
-              );
-            }).toList(),
-            options: CarouselOptions(
-                height: 400,
-                autoPlay: true,
-                enlargeCenterPage: true,
-                enlargeStrategy: CenterPageEnlargeStrategy.height,
-                reverse: true,
-                aspectRatio: 3.0)))
-  
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CardCarou(),
+                    ));
+              },
+              child: Container(
+                  height: 300,
+                  margin: const EdgeInsets.only(top: 20, left: 5),
+                  child: CarouselSlider(
+                      items: gambar.map((item) {
+                        return Container(
+                          margin: const EdgeInsets.only(left: 15, right: 15),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                  image: NetworkImage(item), fit: BoxFit.fill),
+                              border:
+                                  Border.all(width: 3, color: Colors.white)),
+                        );
+                      }).toList(),
+                      options: CarouselOptions(
+                          height: 300,
+                          autoPlay: true,
+                          enlargeCenterPage: true,
+                          enlargeStrategy: CenterPageEnlargeStrategy.height,
+                          reverse: true,
+                          aspectRatio: 3.0))),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget nontonOnline(List<GambarModels> gambar) {
+      return Container(
+        margin: const EdgeInsets.only(left: 20, right: 15, top: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Nonton Online",
+                  style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      "Semua",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.deepPurple),
+                      child: const Center(
+                        child: Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          color: Colors.white,
+                          size: 13,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: gambar.map((GambarModels gambar) {
+                  return CardNonton(gambar);
+                }).toList(),
+              ),
+            ),
           ],
         ),
       );
@@ -225,8 +337,23 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
         backgroundColor: Colors.black,
-        body:ListView(
-                children: [header(), name(), content()],
-              ));
+        body: BlocConsumer<GambarNontonCubit, GambarNontonState>(
+          listener: (context, state) {
+            if (state is GambarNontonFailed) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(state.error)));
+            }
+          },
+          builder: (context, state) {
+            if (state is GambarNontonSucces) {
+              return ListView(
+                children: [name(), gambarBioskop(), nontonOnline(state.gambar)],
+              );
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        ));
   }
 }
