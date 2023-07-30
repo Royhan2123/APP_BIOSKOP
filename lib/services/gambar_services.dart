@@ -9,12 +9,10 @@ class GambarServices {
   Future<List<GambarModels>> fetchGambar() async {
     try {
       QuerySnapshot querySnapshot = await collectionReference.get();
-      for (int i = 0; i < querySnapshot.docs.length; i++) {
-        gambar.add(querySnapshot.docs[i]["imageUrl"]["desc"]["name"]["price"]
-            ["rating"]);
-      
-      }
-      return fetchGambar();
+      List<GambarModels> gambar = querySnapshot.docs.map((e) {
+        return GambarModels.fromJson(e.id, e.data() as Map<String,dynamic>);
+      }).toList();  
+      return gambar;
     } catch (e) {
       throw e.toString();
     }

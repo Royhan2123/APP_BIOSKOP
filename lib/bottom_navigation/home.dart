@@ -1,13 +1,12 @@
 import 'package:apk_bioskop/card_nonton.dart';
-import 'package:apk_bioskop/cubit/auth_cubit.dart';
-import 'package:apk_bioskop/cubit/gambar_nonton_cubit.dart';
-import 'package:apk_bioskop/card_carou.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import '../cubit/auth_cubit.dart';
+import '../cubit/gambar_cubit.dart';
 import '../models/gambar_models.dart';
 
 class Home extends StatefulWidget {
@@ -21,7 +20,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     gambarCarouel();
-    context.read<GambarNontonCubit>().fetchGambar();
+    context.read<GambarCubit>().fetchGambar();
     super.initState();
   }
 
@@ -31,7 +30,7 @@ class _HomeState extends State<Home> {
     var firestoreinstance = FirebaseFirestore.instance;
 
     QuerySnapshot querySnapshot =
-        await firestoreinstance.collection("gambar").get();
+        await firestoreinstance.collection("gambar_nonton").get();
 
     setState(() {
       for (int i = 0; i < querySnapshot.docs.length; i++) {
@@ -45,6 +44,139 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    Widget gambarBioskop() {
+      return Container(
+        margin: const EdgeInsets.only(left: 20, right: 15, top: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Sedang Tayang",
+                  style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      "Semua",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.deepPurple),
+                      child: const Center(
+                        child: Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          color: Colors.white,
+                          size: 13,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Container(
+                height: 300,
+                margin: const EdgeInsets.only(top: 20, left: 5),
+                child: CarouselSlider(
+                    items: gambar.map((item) {
+                      return Container(
+                        margin: const EdgeInsets.only(left: 15, right: 15),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                                image: NetworkImage(item), fit: BoxFit.fill),
+                            border: Border.all(width: 3, color: Colors.white)),
+                      );
+                    }).toList(),
+                    options: CarouselOptions(
+                        height: 300,
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        reverse: true,
+                        aspectRatio: 3.0))),
+          ],
+        ),
+      );
+    }
+
+    Widget nontonOnline(List<GambarModels> gambar) {
+      return Container(
+        margin: const EdgeInsets.only(left: 20, right: 15, top: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Nonton Online",
+                  style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      "Semua",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.deepPurple),
+                      child: const Center(
+                        child: Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          color: Colors.white,
+                          size: 13,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: gambar.map((GambarModels gambar) {
+                  return CardNonton(gambar);
+                }).toList(),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     Widget name() {
       return BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
@@ -192,162 +324,19 @@ class _HomeState extends State<Home> {
       );
     }
 
-    Widget gambarBioskop() {
-      return Container(
-        margin: const EdgeInsets.only(left: 20, right: 15, top: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Sedang Tayang",
-                  style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                Row(
-                  children: [
-                    const Text(
-                      "Semua",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.deepPurple),
-                      child: const Center(
-                        child: Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: Colors.white,
-                          size: 13,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CardCarou(),
-                    ));
-              },
-              child: Container(
-                  height: 300,
-                  margin: const EdgeInsets.only(top: 20, left: 5),
-                  child: CarouselSlider(
-                      items: gambar.map((item) {
-                        return Container(
-                          margin: const EdgeInsets.only(left: 15, right: 15),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              image: DecorationImage(
-                                  image: NetworkImage(item), fit: BoxFit.fill),
-                              border:
-                                  Border.all(width: 3, color: Colors.white)),
-                        );
-                      }).toList(),
-                      options: CarouselOptions(
-                          height: 300,
-                          autoPlay: true,
-                          enlargeCenterPage: true,
-                          enlargeStrategy: CenterPageEnlargeStrategy.height,
-                          reverse: true,
-                          aspectRatio: 3.0))),
-            ),
-          ],
-        ),
-      );
-    }
-
-    Widget nontonOnline(List<GambarModels> gambar) {
-      return Container(
-        margin: const EdgeInsets.only(left: 20, right: 15, top: 50),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Nonton Online",
-                  style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                Row(
-                  children: [
-                    const Text(
-                      "Semua",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.deepPurple),
-                      child: const Center(
-                        child: Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: Colors.white,
-                          size: 13,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: gambar.map((GambarModels gambar) {
-                  return CardNonton(gambar);
-                }).toList(),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
     return Scaffold(
         backgroundColor: Colors.black,
-        body: BlocConsumer<GambarNontonCubit, GambarNontonState>(
+        body: BlocConsumer<GambarCubit, GambarState>(
           listener: (context, state) {
-            if (state is GambarNontonFailed) {
+            if (state is GambarFailed) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(state.error)));
             }
           },
           builder: (context, state) {
-            if (state is GambarNontonSucces) {
+            if (state is GambarSucces) {
               return ListView(
-                children: [name(), gambarBioskop(), nontonOnline(state.gambar)],
+                children: [gambarBioskop(), nontonOnline(state.gambar), name()],
               );
             }
             return const Center(
