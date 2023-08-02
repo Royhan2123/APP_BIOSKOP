@@ -44,139 +44,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    Widget gambarBioskop() {
-      return Container(
-        margin: const EdgeInsets.only(left: 20, right: 15, top: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Sedang Tayang",
-                  style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                Row(
-                  children: [
-                    const Text(
-                      "Semua",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.deepPurple),
-                      child: const Center(
-                        child: Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: Colors.white,
-                          size: 13,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Container(
-                height: 300,
-                margin: const EdgeInsets.only(top: 20, left: 5),
-                child: CarouselSlider(
-                    items: gambar.map((item) {
-                      return Container(
-                        margin: const EdgeInsets.only(left: 15, right: 15),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image: NetworkImage(item), fit: BoxFit.fill),
-                            border: Border.all(width: 3, color: Colors.white)),
-                      );
-                    }).toList(),
-                    options: CarouselOptions(
-                        height: 300,
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        enlargeStrategy: CenterPageEnlargeStrategy.height,
-                        reverse: true,
-                        aspectRatio: 3.0))),
-          ],
-        ),
-      );
-    }
-
-    Widget nontonOnline(List<GambarModels> gambar) {
-      return Container(
-        margin: const EdgeInsets.only(left: 20, right: 15, top: 50),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Nonton Online",
-                  style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                Row(
-                  children: [
-                    const Text(
-                      "Semua",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.deepPurple),
-                      child: const Center(
-                        child: Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: Colors.white,
-                          size: 13,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: gambar.map((GambarModels gambar) {
-                  return CardNonton(gambar);
-                }).toList(),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
     Widget name() {
       return BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
@@ -324,6 +191,139 @@ class _HomeState extends State<Home> {
       );
     }
 
+    Widget gambarBioskop() {
+      return Container(
+        margin: const EdgeInsets.only(left: 20, right: 15, top: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Akan Datang",
+                  style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      "Semua",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.deepPurple),
+                      child: const Center(
+                        child: Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          color: Colors.white,
+                          size: 13,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Container(
+                height: 300,
+                margin: const EdgeInsets.only(top: 20, left: 5),
+                child: CarouselSlider(
+                    items: gambar.map((item) {
+                      return Container(
+                        margin: const EdgeInsets.only(left: 15, right: 15),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                                image: NetworkImage(item), fit: BoxFit.fill),
+                            border: Border.all(width: 3, color: Colors.white)),
+                      );
+                    }).toList(),
+                    options: CarouselOptions(
+                        height: 300,
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        reverse: true,
+                        aspectRatio: 3.0))),
+          ],
+        ),
+      );
+    }
+
+    Widget nontonOnline(List<GambarModels> gambar) {
+      return Container(
+        margin: const EdgeInsets.only(left: 20, right: 15, top: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Sedang Tayang",
+                  style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      "Semua",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.deepPurple),
+                      child: const Center(
+                        child: Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          color: Colors.white,
+                          size: 13,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: gambar.map((GambarModels gambar) {
+                  return CardNonton(gambar);
+                }).toList(),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
         backgroundColor: Colors.black,
         body: BlocConsumer<GambarCubit, GambarState>(
@@ -336,7 +336,11 @@ class _HomeState extends State<Home> {
           builder: (context, state) {
             if (state is GambarSucces) {
               return ListView(
-                children: [gambarBioskop(), nontonOnline(state.gambar), name()],
+                children: [
+                  name(),
+                  gambarBioskop(),
+                  nontonOnline(state.gambar),
+                ],
               );
             }
             return const Center(
