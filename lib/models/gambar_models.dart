@@ -7,6 +7,16 @@ class GambarModels extends Equatable {
   final String desc;
   final String name;
   final String durasi;
+  final String namaArtis;
+  final String namaArtis1;
+  final String namaArtis2;
+  final String namaArtis3;
+  final String namaArtis4;
+  final String imageArtis;
+  final String imageArtis1;
+  final String imageArtis2;
+  final String imageArtis3;
+  final String imageArtis4;
   final String genre;
   final double rating;
   final String ratingUsia;
@@ -18,8 +28,18 @@ class GambarModels extends Equatable {
       this.imageUrl = "",
       this.desc = "",
       this.name = "",
+      this.imageArtis = "",
+      this.imageArtis1 = "",
+      this.imageArtis2 = "",
+      this.imageArtis3 = "",
+      this.imageArtis4 = "",
       this.jumlahPenonton = 180,
       this.imageBintang = "",
+      this.namaArtis = "",
+      this.namaArtis1 = "",
+      this.namaArtis2 = "",
+      this.namaArtis3 = "",
+      this.namaArtis4 = "",
       this.rating = 0.0,
       this.ratingUsia = "",
       this.durasi = "",
@@ -31,13 +51,23 @@ class GambarModels extends Equatable {
         id: id,
         imageUrl: json["imageUrl"].toString(),
         imageBintang: json["imageBintang"].toString(),
+        imageArtis: json["imageArtis"].toString(),
+        imageArtis1: json["imageArtis1"].toString(),
+        imageArtis2: json["imageArtis2"].toString(),
+        imageArtis3: json["imageArtis"].toString(),
+        imageArtis4: json["imageArtis4"].toString(),
+        namaArtis: json["namaArtis"].toString(),
+        namaArtis1: json["namaArtis1"].toString(),
+        namaArtis2: json["namaArtis2"].toString(),
+        namaArtis3: json["namaArtis3"].toString(),
+        namaArtis4: json["namaArtis4"].toString(),
         desc: json["desc"].toString(),
         name: json["name"].toString(),
         durasi: json["durasi"].toString(),
         genre: json["genre"].toString(),
         jumlahPenonton: json["jumlahPenonton"] != null
             ? json["jumlaPenonton"].toInt()
-            : 2086,
+            : 10850,
         rating: json["rating"].toDouble(),
         sutradara: json["sutradara"].toString(),
         ratingUsia: json["ratingUsia"].toString(),
@@ -54,6 +84,16 @@ class GambarModels extends Equatable {
         durasi,
         genre,
         sutradara,
-        rating
+        rating,
+        imageArtis,
+        imageArtis1,
+        imageArtis2,
+        imageArtis3,
+        imageArtis4,
+        namaArtis,
+        namaArtis1,
+        namaArtis2,
+        namaArtis3,
+        namaArtis4,
       ];
 }

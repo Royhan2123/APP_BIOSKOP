@@ -301,14 +301,11 @@ class _CardCarouState extends State<CardCarou>
               ),
               SizedBox(
                 width: double.maxFinite,
-                height: 300,
+                height: 520,
                 child: TabBarView(controller: controller, children: [
                   Sinopsis(widget.gambar),
-                  Sinopsis(widget.gambar),  
+                  Sinopsis(widget.gambar),
                 ]),
-              ),
-              const SizedBox(
-                height: 100,
               ),
             ],
           ),

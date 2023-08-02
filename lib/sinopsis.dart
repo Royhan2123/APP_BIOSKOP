@@ -33,26 +33,139 @@ class Sinopsis extends StatelessWidget {
               height: 20,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: 120,
-                      height: 150,
+                      width: 100,
+                      height: 120,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          image: const DecorationImage(
-                              image: AssetImage("assets/images/rizkyNazar.png"),
+                          image: DecorationImage(
+                              image: NetworkImage(gambar.imageArtis),
                               fit: BoxFit.fill)),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Text("Rizky Nazar"),
+                    Text(
+                      gambar.namaArtis,
+                      style: GoogleFonts.poppins(
+                          color: Colors.black, fontSize: 13),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                              image: NetworkImage(gambar.imageArtis1),
+                              fit: BoxFit.fill)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      gambar.namaArtis1,
+                      style: GoogleFonts.poppins(
+                          color: Colors.black, fontSize: 13),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                              image: NetworkImage(gambar.imageArtis2),
+                              fit: BoxFit.fill)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      gambar.namaArtis2,
+                      style: GoogleFonts.poppins(
+                          color: Colors.black, fontSize: 13),
+                    ),
                   ],
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                              image: NetworkImage(gambar.imageArtis3),
+                              fit: BoxFit.fill)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      gambar.namaArtis3,
+                      style: GoogleFonts.poppins(
+                          color: Colors.black, fontSize: 13),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                              image: NetworkImage(gambar.imageArtis4),
+                              fit: BoxFit.fill)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      gambar.namaArtis4,
+                      style: GoogleFonts.poppins(
+                          color: Colors.black, fontSize: 13),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 200,
             ),
           ],
         ),
