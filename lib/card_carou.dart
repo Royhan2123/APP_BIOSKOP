@@ -1,3 +1,4 @@
+import 'package:apk_bioskop/jadwal.dart';
 import 'package:apk_bioskop/models/gambar_models.dart';
 import 'package:apk_bioskop/sinopsis.dart';
 import 'package:flutter/material.dart';
@@ -304,7 +305,7 @@ class _CardCarouState extends State<CardCarou>
                 height: 520,
                 child: TabBarView(controller: controller, children: [
                   Sinopsis(widget.gambar),
-                  Sinopsis(widget.gambar),
+                  const Jadwal(),
                 ]),
               ),
             ],
