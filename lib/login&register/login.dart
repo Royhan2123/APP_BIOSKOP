@@ -20,9 +20,12 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     Widget login() {
       return Container(
-        margin: const EdgeInsets.all(20),
-        child: Card(
-          elevation: 8.0,
+        margin: const EdgeInsets.only(top: 40, left: 10, right: 10),
+        child: Card(  
+          elevation: 12.0,
+          shadowColor: Colors.blueGrey,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           child: Container(
             margin: const EdgeInsets.only(left: 15, right: 15),
             child: Column(
@@ -110,8 +113,7 @@ class _LoginState extends State<Login> {
                         shadowColor: Colors.black,
                         shape: const StadiumBorder(),
                       ),
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       child: const Text(
                         "Login",
                         style: TextStyle(color: Colors.white),

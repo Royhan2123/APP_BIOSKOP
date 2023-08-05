@@ -123,7 +123,7 @@ class _HomeState extends State<Home> {
                         child: Row(
                           children: [
                             const SizedBox(
-                              width: 10,
+                              width: 20,
                             ),
                             Container(
                               width: 20,
@@ -145,16 +145,12 @@ class _HomeState extends State<Home> {
                                 style: GoogleFonts.poppins(
                                     color: Colors.white, fontSize: 15)),
                             const SizedBox(
-                              width: 25,
+                              width: 20,
                             ),
-                            const Center(
-                              child: Text(
-                                "|",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                ),
-                              ),
+                            Center(
+                              child: Text("|",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white, fontSize: 25)),
                             ),
                             const SizedBox(
                               width: 20,
@@ -177,6 +173,9 @@ class _HomeState extends State<Home> {
                                   fontFamily: "Poppins",
                                   fontSize: 15),
                             ),
+                            const SizedBox(
+                              width: 20,
+                            )
                           ],
                         ),
                       ),

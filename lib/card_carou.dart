@@ -1,7 +1,9 @@
+import 'package:apk_bioskop/cubit/love_cubit.dart';
 import 'package:apk_bioskop/jadwal.dart';
 import 'package:apk_bioskop/models/gambar_models.dart';
 import 'package:apk_bioskop/sinopsis.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardCarou extends StatefulWidget {
@@ -255,20 +257,33 @@ class _CardCarouState extends State<CardCarou>
                                     NetworkImage(widget.gambar.imageBintang))),
                       ),
                       const SizedBox(
-                        width: 50,
+                        width: 45,
                       ),
-                      Text(
-                        "|",
-                        style: GoogleFonts.poppins(
-                            color: Colors.grey, fontSize: 30),
+                      Center(
+                        child: Text(
+                          "|",
+                          style: GoogleFonts.poppins(
+                              color: Colors.grey, fontSize: 30),
+                        ),
                       ),
                       const SizedBox(
                         width: 30,
                       ),
-                      const Icon(
-                        Icons.favorite,
-                        size: 25,
-                        color: Colors.grey,
+                      InkWell(
+                        onTap: () {
+                          context.read<LoveCubit>().toggleLove();
+                        },
+                        child: BlocBuilder<LoveCubit, Perubahan>(
+                          builder: (context, state) {
+                            return Icon(
+                              Icons.favorite,
+                              size: 25,
+                              color: state == Perubahan.grey
+                                  ? Colors.grey
+                                  : Colors.red,
+                            );
+                          },
+                        ),
                       ),
                       const SizedBox(
                         width: 5,
@@ -305,7 +320,7 @@ class _CardCarouState extends State<CardCarou>
                 height: 520,
                 child: TabBarView(controller: controller, children: [
                   Sinopsis(widget.gambar),
-                  const Jadwal(),
+                    const Jadwal(id: ''),
                 ]),
               ),
             ],
@@ -319,8 +334,8 @@ class _CardCarouState extends State<CardCarou>
           body: Stack(
         children: [
           headher(),
-          back(),
           content(),
+          back(),
         ],
       )),
     );

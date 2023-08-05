@@ -17,7 +17,10 @@ class CardNonton extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CardCarou(gambar),
+                  builder: (context) => CardCarou(
+                    gambar,
+
+                  ),
                 ));
           },
           child: Container(

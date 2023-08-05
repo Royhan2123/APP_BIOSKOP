@@ -54,7 +54,7 @@ class GambarModels extends Equatable {
         imageArtis: json["imageArtis"].toString(),
         imageArtis1: json["imageArtis1"].toString(),
         imageArtis2: json["imageArtis2"].toString(),
-        imageArtis3: json["imageArtis"].toString(),
+        imageArtis3: json["imageArtis3"].toString(),
         imageArtis4: json["imageArtis4"].toString(),
         namaArtis: json["namaArtis"].toString(),
         namaArtis1: json["namaArtis1"].toString(),

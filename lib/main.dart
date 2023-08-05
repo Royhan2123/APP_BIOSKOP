@@ -1,7 +1,8 @@
 import 'package:apk_bioskop/cubit/auth_cubit.dart';
-import 'package:apk_bioskop/cubit/bottom_cubit.dart';
 import 'package:apk_bioskop/cubit/gambar_cubit.dart';
 import 'package:apk_bioskop/cubit/gambar_nonton_cubit.dart';
+import 'package:apk_bioskop/cubit/jadwal_cubit.dart';
+import 'package:apk_bioskop/cubit/love_cubit.dart';
 import 'package:apk_bioskop/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +24,10 @@ class NewApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit(),),
-        BlocProvider(create: (context) => BottomCubit(),),        
         BlocProvider(create: (context) => GambarCubit(),),        
-        BlocProvider(create: (context) => GambarNontonCubit(),),                
+        BlocProvider(create: (context) => GambarNontonCubit(),),              
+        BlocProvider(create: (context) => LoveCubit(),),              
+        BlocProvider(create: (context) => JadwalCubit(),),              
       ],
       child: const MaterialApp(
         home: SplashScreen(),

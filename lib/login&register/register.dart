@@ -25,9 +25,12 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     Widget register() {
       return Container(
-        margin: const EdgeInsets.all(20),
+        margin: const EdgeInsets.only(top: 25, left: 10, right: 10),
         child: Card(
-          elevation: 8.0,
+          elevation: 12.0,
+          shadowColor: Colors.blueGrey,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           child: Container(
             margin: const EdgeInsets.only(left: 15, right: 15),
             child: Column(
