@@ -206,7 +206,7 @@ class _CardCarouState extends State<CardCarou>
                           height: 10,
                         ),
                         Text(
-                          "${widget.gambar.jumlahPenonton.toString()} ditonton",
+                          "${widget.gambar.penonton.toString()} penonton",
                           style: GoogleFonts.poppins(
                               color: Colors.black, fontSize: 12),
                         ),
@@ -317,10 +317,10 @@ class _CardCarouState extends State<CardCarou>
               ),
               SizedBox(
                 width: double.maxFinite,
-                height: 520,
+                height: 550,
                 child: TabBarView(controller: controller, children: [
                   Sinopsis(widget.gambar),
-                    const Jadwal(id: ''),
+                  Jadwal(widget.gambar),
                 ]),
               ),
             ],

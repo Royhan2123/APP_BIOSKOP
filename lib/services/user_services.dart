@@ -1,6 +1,7 @@
 
-import 'package:apk_bioskop/services/users_models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../models/users_models.dart';
 
 class UserServices {
   CollectionReference collectionReference =
