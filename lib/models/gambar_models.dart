@@ -37,6 +37,10 @@ class GambarModels extends Equatable {
   final String km1;
   final String km2;
   final String km3;
+  final String nonton;
+  final String nonton1;
+  final String namaNonton;
+  final String namaNonton1;
   final String waktu;
   final String waktu1;
   final String waktu2;
@@ -58,6 +62,10 @@ class GambarModels extends Equatable {
       this.km1 = "",
       this.km2 = "",
       this.km3 = "",
+      this.nonton = "",
+      this.nonton1 = "",
+      this.namaNonton = "",
+      this.namaNonton1 = "",
       this.jalan2 = "",
       this.jalan3 = "",
       this.imageArtis = "",
@@ -108,14 +116,18 @@ class GambarModels extends Equatable {
         namaTempat: json["namaTempat"].toString(),
         namaTempat1: json["namaTempat1"].toString(),
         namaTempat2: json["namaTempat2"].toString(),
-        namaTempat3: json["namaArtis"].toString(),
+        namaTempat3: json["namaTempat3"].toString(),
         namaArtis1: json["namaArtis1"].toString(),
         namaArtis2: json["namaArtis2"].toString(),
         namaArtis3: json["namaArtis3"].toString(),
         namaArtis4: json["namaArtis4"].toString(),
         desc: json["desc"].toString(),
         km: json["km"].toString(),
-        km1: json["km1"].toString(),
+        km1: json["km1"].toString(),  
+        nonton: json["nonton"].toString(),
+        nonton1: json["nonton1"].toString(),
+        namaNonton: json["namaNonton"].toString(),
+        namaNonton1: json["namaNonton1"].toString(),
         km2: json["km2"].toString(),
         km3: json["km3"].toString(),
         waktu: json["waktu"].toString(),
@@ -177,6 +189,10 @@ class GambarModels extends Equatable {
         namaArtis2,
         namaArtis3,
         namaArtis4,
+        namaNonton,
+        namaNonton1,
+        nonton,
+        nonton1,
         price,
         price1,
         price2,

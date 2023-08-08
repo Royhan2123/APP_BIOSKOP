@@ -169,7 +169,7 @@ class _JadwalState extends State<Jadwal> {
                               ])),
                           child: Center(
                             child: Text(
-                              "XXI",
+                              widget.gambar.namaNonton,
                               style: GoogleFonts.aBeeZee(
                                   color: Colors.white, fontSize: 11),
                             ),
@@ -209,9 +209,9 @@ class _JadwalState extends State<Jadwal> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "2D",
-                          style: TextStyle(
+                        Text(
+                          widget.gambar.nonton,
+                          style: const TextStyle(
                               color: Colors.blueGrey,
                               fontSize: 15,
                               fontWeight: FontWeight.bold),
@@ -379,7 +379,7 @@ class _JadwalState extends State<Jadwal> {
                               ])),
                           child: Center(
                             child: Text(
-                              "XXI",
+                              widget.gambar.namaNonton,
                               style: GoogleFonts.aBeeZee(
                                   color: Colors.white, fontSize: 11),
                             ),
@@ -419,9 +419,9 @@ class _JadwalState extends State<Jadwal> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "2D",
-                          style: TextStyle(
+                        Text(
+                          widget.gambar.nonton,
+                          style: const TextStyle(
                               color: Colors.blueGrey,
                               fontSize: 15,
                               fontWeight: FontWeight.bold),
@@ -439,102 +439,690 @@ class _JadwalState extends State<Jadwal> {
                       ],
                     ),
                     const SizedBox(height: 15),
-                    BlocBuilder<WaktuCubit, List<TimeContainerState>>(
-                      builder: (context, state) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            for (var i = 0; i < 4; i++)
-                              InkWell(
-                                onTap: () {
-                                  context.read<WaktuCubit>().setTimeClicked(i);
-                                },
-                                child: Container(
-                                  width: 70,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(7),
-                                    color: state[i] ==
-                                            TimeContainerState.clicked
-                                        ? const Color.fromARGB(255, 25, 2, 63)
-                                        : const Color.fromARGB(
-                                            255, 208, 208, 208),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      i == 0
-                                          ? widget.gambar.waktu
-                                          : i == 1
-                                              ? widget.gambar.waktu2
-                                              : i == 2
-                                                  ? widget.gambar.waktu3
-                                                  : widget.gambar.waktu4,
-                                      style: TextStyle(
-                                        color: state[i] ==
-                                                TimeContainerState.clicked
-                                            ? Colors.yellow
-                                            : Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
                               ),
-                          ],
-                        );
-                      },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu1,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu2,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu3,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 10),
-                    BlocBuilder<WaktuCubit, List<TimeContainerState>>(
-                      builder: (context, state) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            for (var i = 4; i < 8; i++)
-                              InkWell(
-                                onTap: () {
-                                  context.read<WaktuCubit>().setTimeClicked(i);
-                                },
-                                child: Container(
-                                  width: 70,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(7),
-                                    color: state[i] ==
-                                            TimeContainerState.clicked
-                                        ? const Color.fromARGB(255, 25, 2, 63)
-                                        : const Color.fromARGB(
-                                            255, 208, 208, 208),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      i == 3
-                                          ? widget.gambar.waktu4
-                                          : i == 4
-                                              ? widget.gambar.waktu5
-                                              : i == 5
-                                                  ? widget.gambar.waktu6
-                                                  : widget.gambar.waktu7,
-                                      style: TextStyle(
-                                        color: state[i] ==
-                                                TimeContainerState.clicked
-                                            ? Colors.yellow
-                                            : Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu4,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
                               ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu5,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu6,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu7,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              /**
+               * PEMBATAS 2
+               */
+              Container(
+                margin: const EdgeInsets.only(top: 10, bottom: 20),
+                height: 7,
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 209, 207, 207)),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 10, right: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 25,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 208, 208, 208),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: const Icon(
+                                Icons.star,
+                                size: 25,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              widget.gambar.namaTempat2,
+                              style: const TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500),
+                            ),
                           ],
-                        );
-                      },
+                        ),
+                        Container(
+                          width: 50,
+                          height: 20,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              gradient: const LinearGradient(colors: [
+                                Color.fromARGB(255, 238, 172, 5),
+                                Color.fromARGB(255, 255, 107, 1),
+                                Color.fromARGB(255, 240, 152, 28)
+                              ])),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.namaNonton1,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 8),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Text(
+                            widget.gambar.km2,
+                            style: const TextStyle(
+                                color: Colors.grey, fontSize: 11),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            widget.gambar.jalan2,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.gambar.nonton1,
+                          style: const TextStyle(
+                              color: Colors.blueGrey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                            NumberFormat.currency(
+                                    locale: "id",
+                                    symbol: "Rp",
+                                    decimalDigits: 0)
+                                .format(widget.gambar.price2),
+                            style: GoogleFonts.poppins(
+                                color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400)),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu1,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu2,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu3,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu4,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu5,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu6,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu7,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              /**
+               * PEMBATAS 3
+               */
+              Container(
+                margin: const EdgeInsets.only(top: 10, bottom: 20),
+                height: 7,
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 209, 207, 207)),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 10, right: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 25,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 208, 208, 208),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: const Icon(
+                                Icons.star,
+                                size: 25,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              widget.gambar.namaTempat3,
+                              style: const TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          width: 35,
+                          height: 20,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              gradient: const LinearGradient(colors: [
+                                Color.fromARGB(255, 238, 172, 5),
+                                Color.fromARGB(255, 255, 107, 1),
+                                Color.fromARGB(255, 240, 152, 28)
+                              ])),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.nonton,
+                              style: GoogleFonts.aBeeZee(
+                                  color: Colors.white, fontSize: 11),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Text(
+                            widget.gambar.km3,
+                            style: const TextStyle(
+                                color: Colors.grey, fontSize: 11),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            widget.gambar.jalan3,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.gambar.nonton,
+                          style: const TextStyle(
+                              color: Colors.blueGrey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                            NumberFormat.currency(
+                                    locale: "id",
+                                    symbol: "Rp",
+                                    decimalDigits: 0)
+                                .format(widget.gambar.price3),
+                            style: GoogleFonts.poppins(
+                                color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400)),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu1,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu2,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu3,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu4,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu5,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu6,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: const Color.fromARGB(255, 208, 208, 208),
+                          ),
+                          child: Center(
+                            child: Text(
+                              widget.gambar.waktu7,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
               const SizedBox(
-                height: 200,
+                height: 70,
               ),
             ],
           ),
