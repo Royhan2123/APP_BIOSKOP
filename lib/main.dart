@@ -3,6 +3,7 @@ import 'package:apk_bioskop/cubit/gambar_cubit.dart';
 import 'package:apk_bioskop/cubit/gambar_nonton_cubit.dart';
 import 'package:apk_bioskop/cubit/jadwal_cubit.dart';
 import 'package:apk_bioskop/cubit/love_cubit.dart';
+import 'package:apk_bioskop/cubit/pemesanan_cubit.dart';
 import 'package:apk_bioskop/cubit/waktu_cubit.dart';
 import 'package:apk_bioskop/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,6 +31,7 @@ class NewApp extends StatelessWidget {
         BlocProvider(create: (context) => LoveCubit(),),              
         BlocProvider(create: (context) => JadwalCubit(),),              
         BlocProvider(create: (context) => WaktuCubit(),),                     
+        BlocProvider(create: (context) => PemesananCubit(),),                     
       ],
       child: const MaterialApp(
         home: SplashScreen(),

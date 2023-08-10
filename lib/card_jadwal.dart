@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'models/gambar_models.dart';
+
 class CardJadwal extends StatelessWidget {
   final String id;
-  final String tanggal;
+  final GambarModels gambar;
   final String hari;
   final bool isAvalaible;
-  const CardJadwal(
+  const CardJadwal(this.gambar,
       {required this.hari,
       this.isAvalaible = true,
-      required this.tanggal,
       required this.id,
       super.key});
 
@@ -45,7 +46,7 @@ class CardJadwal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "$tanggal Agu",
+              gambar.tanggal,
               style: GoogleFonts.poppins(color: Colors.white, fontSize: 13),
             ),
             const SizedBox(

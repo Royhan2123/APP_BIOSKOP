@@ -25,18 +25,95 @@ class _JadwalState extends State<Jadwal> {
             scrollDirection: Axis.horizontal,
             child: Container(
               margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CardJadwal(
-                      isAvalaible: false,
-                      hari: "Hari ini",
-                      tanggal: "07",
-                      id: "07"),
-                  CardJadwal(hari: "Selasa", tanggal: "08", id: "08"),
-                  CardJadwal(hari: "Rabu", tanggal: "09", id: "09"),
-                  CardJadwal(hari: "Kamis", tanggal: "10", id: "10"),
-                  CardJadwal(hari: "Jumat", tanggal: "11", id: "11"),
+                  CardJadwal(widget.gambar,
+                      hari: "Hari Ini", id: "16", isAvalaible: false),
+                  Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    width: 90,
+                    height: 55,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.5),
+                        color: const Color.fromARGB(255, 208, 208, 208)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "17 Agu",
+                          style: GoogleFonts.poppins(
+                              color: Colors.white, fontSize: 13),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Kamis",
+                          style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    width: 90,
+                    height: 55,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.5),
+                        color: const Color.fromARGB(255, 208, 208, 208)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "18 Agu",
+                          style: GoogleFonts.poppins(
+                              color: Colors.white, fontSize: 13),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Jumat",
+                          style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    width: 90,
+                    height: 55,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.5),
+                        color: const Color.fromARGB(255, 208, 208, 208)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "19 Agu",
+                          style: GoogleFonts.poppins(
+                              color: Colors.white, fontSize: 13),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Sabtu",
+                          style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -229,7 +306,7 @@ class _JadwalState extends State<Jadwal> {
                       ],
                     ),
                     const SizedBox(height: 15),
-                    BlocBuilder<WaktuCubit, List<TimeContainerState>>(
+                    BlocBuilder<WaktuCubit, int>(
                       builder: (context, state) {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -244,8 +321,7 @@ class _JadwalState extends State<Jadwal> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(7),
-                                    color: state[i] ==
-                                            TimeContainerState.clicked
+                                    color: state == i
                                         ? const Color.fromARGB(255, 25, 2, 63)
                                         : const Color.fromARGB(
                                             255, 208, 208, 208),
@@ -255,13 +331,12 @@ class _JadwalState extends State<Jadwal> {
                                       i == 0
                                           ? widget.gambar.waktu
                                           : i == 1
-                                              ? widget.gambar.waktu2
+                                              ? widget.gambar.waktu1
                                               : i == 2
-                                                  ? widget.gambar.waktu3
-                                                  : widget.gambar.waktu4,
+                                                  ? widget.gambar.waktu2
+                                                  : widget.gambar.waktu3,
                                       style: TextStyle(
-                                        color: state[i] ==
-                                                TimeContainerState.clicked
+                                        color: state == i
                                             ? Colors.yellow
                                             : Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -275,7 +350,7 @@ class _JadwalState extends State<Jadwal> {
                       },
                     ),
                     const SizedBox(height: 10),
-                    BlocBuilder<WaktuCubit, List<TimeContainerState>>(
+                    BlocBuilder<WaktuCubit, int>(
                       builder: (context, state) {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -290,24 +365,22 @@ class _JadwalState extends State<Jadwal> {
                                   height: 40,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(7),
-                                    color: state[i] ==
-                                            TimeContainerState.clicked
+                                    color: state == i
                                         ? const Color.fromARGB(255, 25, 2, 63)
                                         : const Color.fromARGB(
                                             255, 208, 208, 208),
                                   ),
                                   child: Center(
                                     child: Text(
-                                      i == 3
+                                      i == 4
                                           ? widget.gambar.waktu4
-                                          : i == 4
+                                          : i == 5
                                               ? widget.gambar.waktu5
-                                              : i == 5
+                                              : i == 6
                                                   ? widget.gambar.waktu6
                                                   : widget.gambar.waktu7,
                                       style: TextStyle(
-                                        color: state[i] ==
-                                                TimeContainerState.clicked
+                                        color: state == i
                                             ? Colors.yellow
                                             : Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -647,7 +720,7 @@ class _JadwalState extends State<Jadwal> {
                             child: Text(
                               widget.gambar.namaNonton1,
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 8),
+                                  color: Colors.white, fontSize: 10),
                             ),
                           ),
                         ),
@@ -911,7 +984,7 @@ class _JadwalState extends State<Jadwal> {
                               ])),
                           child: Center(
                             child: Text(
-                              widget.gambar.nonton,
+                              widget.gambar.namaNonton,
                               style: GoogleFonts.aBeeZee(
                                   color: Colors.white, fontSize: 11),
                             ),
@@ -1133,25 +1206,24 @@ class _JadwalState extends State<Jadwal> {
     Widget beliTicket() {
       return Align(
         alignment: Alignment.bottomCenter,
-        child: BlocBuilder<WaktuCubit, List<TimeContainerState>>(
+        child: BlocBuilder<WaktuCubit, int>(
           builder: (context, state) {
-            bool anyContainerClicked =
-                state.any((state) => state == TimeContainerState.clicked);
+            bool isAnyTimeSelected = state != -1;
+
             return InkWell(
               onTap: () {
-                if (anyContainerClicked) {
-                  context.read<WaktuCubit>().setTimeClicked(0);
+                if (isAnyTimeSelected) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Pemesanan(),
+                      builder: (context) => Pemesanan(widget.gambar),
                     ),
                   );
                 }
               },
               child: Container(
                 height: 50,
-                color: anyContainerClicked
+                color: isAnyTimeSelected
                     ? const Color.fromARGB(255, 25, 2, 63)
                     : const Color.fromARGB(255, 208, 208, 208),
                 child: Row(
@@ -1160,15 +1232,15 @@ class _JadwalState extends State<Jadwal> {
                     Icon(
                       Icons.local_movies,
                       size: 25,
-                      color: anyContainerClicked ? Colors.yellow : Colors.grey,
+                      color: isAnyTimeSelected ? Colors.yellow : Colors.grey,
                     ),
                     Text(
                       "BELI TIKET",
-                      style: GoogleFonts.poppins(
-                          fontSize: 20,
-                          color:
-                              anyContainerClicked ? Colors.yellow : Colors.grey,
-                          fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: isAnyTimeSelected ? Colors.yellow : Colors.grey,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 ),

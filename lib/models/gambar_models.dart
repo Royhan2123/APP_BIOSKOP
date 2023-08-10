@@ -41,6 +41,7 @@ class GambarModels extends Equatable {
   final String nonton1;
   final String namaNonton;
   final String namaNonton1;
+  final String tanggal;
   final String waktu;
   final String waktu1;
   final String waktu2;
@@ -56,6 +57,7 @@ class GambarModels extends Equatable {
       this.imageUrl = "",
       this.desc = "",
       this.name = "",
+      this.tanggal = "",
       this.jalan = "",
       this.jalan1 = "",
       this.km = "",
@@ -122,6 +124,7 @@ class GambarModels extends Equatable {
         namaArtis3: json["namaArtis3"].toString(),
         namaArtis4: json["namaArtis4"].toString(),
         desc: json["desc"].toString(),
+        tanggal: json["tanggal"].toString(),
         km: json["km"].toString(),
         km1: json["km1"].toString(),  
         nonton: json["nonton"].toString(),
@@ -162,6 +165,7 @@ class GambarModels extends Equatable {
         jalan,
         jalan1,
         jalan2,
+        tanggal,
         jalan3,
         imageUrl,
         penonton,
