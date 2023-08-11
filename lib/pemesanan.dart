@@ -1,8 +1,10 @@
 import 'package:apk_bioskop/card_pemesanan.dart';
+import 'package:apk_bioskop/cubit/pemesanan_cubit.dart';
 import 'package:apk_bioskop/models/gambar_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'cubit/waktu_cubit.dart';
 
 class Pemesanan extends StatelessWidget {
@@ -138,7 +140,12 @@ class Pemesanan extends StatelessWidget {
                     margin: const EdgeInsets.only(right: 5),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: const Color.fromARGB(255, 208, 208, 208)),
+                        color: const Color.fromARGB(255, 208, 208, 208),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Color.fromARGB(255, 141, 139, 139),
+                              blurRadius: 3.0)
+                        ]),
                   ),
                   Text(
                     "Tidak Tersedia",
@@ -196,64 +203,70 @@ class Pemesanan extends StatelessWidget {
     Widget harga() {
       return Align(
         alignment: Alignment.bottomCenter,
-        child: Container(
-          margin: const EdgeInsets.only(bottom: 40),
-          decoration:
-              BoxDecoration(border: Border.all(width: 1, color: Colors.grey)),
-          height: 100,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+        child: BlocBuilder<PemesananCubit, List<String>>(
+          builder: (context, state) {
+            return Container(
+              margin: const EdgeInsets.only(bottom: 40),
+              decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: Colors.grey)),
+              height: 100,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "TOTAL HARGA",
-                      style:
-                          GoogleFonts.poppins(color: Colors.grey, fontSize: 13),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "TOTAL HARGA",
+                          style: GoogleFonts.poppins(
+                              color: Colors.grey, fontSize: 13),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          NumberFormat.currency(
+                                  locale: "id", symbol: "Rp ", decimalDigits: 0)
+                              .format(state.length * gambar.price),
+                          style: GoogleFonts.poppins(
+                              color: Colors.blueGrey, fontSize: 13),
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      height: 15,
+                    Center(
+                      child: Container(
+                        width: 2,
+                        height: 70,
+                        color: const Color.fromARGB(255, 210, 206, 206),
+                      ),
                     ),
-                    Text(
-                      "RP0",
-                      style: GoogleFonts.poppins(
-                          color: Colors.blueGrey, fontSize: 17),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "TEMPAT DUDUK",
+                          style: GoogleFonts.poppins(
+                              color: Colors.grey, fontSize: 13),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          state.join(', '),
+                          style: GoogleFonts.poppins(
+                              color: Colors.blueGrey, fontSize: 12),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                Center(
-                  child: Container(
-                    width: 2,
-                    height: 70,
-                    color: const Color.fromARGB(255, 210, 206, 206),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "TEMPAT DUDUK",
-                      style:
-                          GoogleFonts.poppins(color: Colors.grey, fontSize: 13),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Text(
-                      "No Kursi",
-                      style: GoogleFonts.poppins(
-                          color: Colors.blueGrey, fontSize: 17),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       );
     }
@@ -331,13 +344,11 @@ class Pemesanan extends StatelessWidget {
                       CardPemesanan(
                         text: "B1",
                         id: "B1",
-                        isAvalaible: false,
                       ),
                       CardPemesanan(text: "B2", id: "B2"),
                       CardPemesanan(
                         text: "B3",
                         id: "B3",
-                        isAvalaible: false,
                       ),
                       CardPemesanan(text: "B4", id: "B4"),
                       CardPemesanan(text: "B5", id: "B5"),
@@ -396,7 +407,6 @@ class Pemesanan extends StatelessWidget {
                       CardPemesanan(
                         text: "D2",
                         id: "D2",
-                        isAvalaible: false,
                       ),
                       CardPemesanan(text: "D3", id: "D3"),
                       CardPemesanan(text: "D4", id: "D4"),

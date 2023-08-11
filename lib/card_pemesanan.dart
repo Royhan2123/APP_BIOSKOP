@@ -42,7 +42,7 @@ class CardPemesanan extends StatelessWidget {
         height: 25,
         width: 30,
         margin: const EdgeInsets.only(
-          right: 15,
+          right: 5,
           top: 5,
           left: 5,
         ),
