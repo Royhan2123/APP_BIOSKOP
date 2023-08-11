@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-Color shadowcolor = Colors.transparent; 
+Color shadowcolor = Colors.transparent;
 
 class PemesananCubit extends Cubit<List<String>> {
   PemesananCubit() : super([]);
 
   void selectKursi(String id) {
-    //ignore: avoid_print
+    // ignore: avoid_print
     print("sebelum di klik $state");
     if (!isSelected(id)) {
-      state.add(id);
+      if (state.length < 5) {
+        state.add(id);
+      } else {
+        // Tampilkan pesan bahwa sudah mencapai batas maksimal
+        // Anda bisa menggunakan SnackBar atau cara lainnya
+        // ignore: avoid_print
+        print("Anda hanya bisa memilih maksimal 5 kursi.");
+        return;
+      }
     } else {
       state.remove(id);
     }
     emit(List.from(state));
-    //ignore: avoid_print
+    // ignore: avoid_print
     print("setelah di klik $state");
   }
 
@@ -36,5 +44,9 @@ class PemesananCubit extends Cubit<List<String>> {
 
   Color getShadowColor() {
     return shadowcolor;
+  }
+
+  bool klik() {
+    return state.isNotEmpty;
   }
 }

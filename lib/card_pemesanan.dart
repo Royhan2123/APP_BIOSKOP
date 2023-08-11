@@ -2,7 +2,7 @@ import 'package:apk_bioskop/cubit/pemesanan_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CardPemesanan extends StatelessWidget {
+class CardPemesanan extends StatefulWidget {
   final String id;
   final bool isAvalaible;
   final String text;
@@ -13,10 +13,16 @@ class CardPemesanan extends StatelessWidget {
       super.key});
 
   @override
+  State<CardPemesanan> createState() => _CardPemesananState();
+}
+
+class _CardPemesananState extends State<CardPemesanan> {
+  @override
   Widget build(BuildContext context) {
-    bool isSelected = context.watch<PemesananCubit>().isSelected(id);
+    bool isSelected = context.watch<PemesananCubit>().isSelected(widget.id);
+    
     backgroundColor() {
-      if (!isAvalaible) {
+      if (!widget.isAvalaible) {
         context
             .read<PemesananCubit>()
             .setShadowColor(const Color.fromARGB(255, 141, 139, 139));
@@ -34,8 +40,8 @@ class CardPemesanan extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        if (isAvalaible) {
-          context.read<PemesananCubit>().selectKursi(id);
+        if (widget.isAvalaible) {
+          context.read<PemesananCubit>().selectKursi(widget.id);
         }
       },
       child: Container(
@@ -57,7 +63,7 @@ class CardPemesanan extends StatelessWidget {
             ]),
         child: Center(
             child: Text(
-          "$text ",
+          "${widget.text} ",
           style: const TextStyle(
               color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
         )),
