@@ -19,8 +19,8 @@ class CardPemesanan extends StatefulWidget {
 class _CardPemesananState extends State<CardPemesanan> {
   @override
   Widget build(BuildContext context) {
+    bool terplih = false;
     bool isSelected = context.watch<PemesananCubit>().isSelected(widget.id);
-    
     backgroundColor() {
       if (!widget.isAvalaible) {
         context

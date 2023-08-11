@@ -10,13 +10,13 @@ class PemesananCubit extends Cubit<List<String>> {
     // ignore: avoid_print
     print("sebelum di klik $state");
     if (!isSelected(id)) {
-      if (state.length < 5) {
+      if (state.length < 4) {
         state.add(id);
       } else {
         // Tampilkan pesan bahwa sudah mencapai batas maksimal
         // Anda bisa menggunakan SnackBar atau cara lainnya
         // ignore: avoid_print
-        print("Anda hanya bisa memilih maksimal 5 kursi.");
+        print("Anda hanya bisa memilih maksimal 4 kursi");
         return;
       }
     } else {
@@ -49,4 +49,7 @@ class PemesananCubit extends Cubit<List<String>> {
   bool klik() {
     return state.isNotEmpty;
   }
+  int getSelectedSeatsCount() {
+  return state.length;
+}
 }
