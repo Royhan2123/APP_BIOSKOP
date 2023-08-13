@@ -9,6 +9,7 @@ import 'package:apk_bioskop/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cubit/transaksi_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -31,7 +32,8 @@ class NewApp extends StatelessWidget {
         BlocProvider(create: (context) => LoveCubit(),),              
         BlocProvider(create: (context) => JadwalCubit(),),              
         BlocProvider(create: (context) => WaktuCubit(),),                     
-        BlocProvider(create: (context) => PemesananCubit(),),                     
+        BlocProvider(create: (context) => PemesananCubit(),),                         
+        BlocProvider(create: (context) => TransaksiCubit(),),                         
       ],
       child: const MaterialApp(
         home: SplashScreen(),

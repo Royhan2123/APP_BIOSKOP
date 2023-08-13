@@ -1,6 +1,7 @@
 import 'package:apk_bioskop/card_pemesanan.dart';
 import 'package:apk_bioskop/cubit/pemesanan_cubit.dart';
 import 'package:apk_bioskop/models/gambar_models.dart';
+import 'package:apk_bioskop/models/transaksi_models.dart';
 import 'package:apk_bioskop/transaksi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -206,7 +207,6 @@ class Pemesanan extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         child: BlocBuilder<PemesananCubit, List<String>>(
           builder: (context, state) {
-            
             return Container(
               margin: const EdgeInsets.only(bottom: 40),
               decoration: BoxDecoration(
@@ -593,32 +593,45 @@ class Pemesanan extends StatelessWidget {
       bool klik = context.watch<PemesananCubit>().klik();
       return Align(
         alignment: Alignment.bottomCenter,
-        child: InkWell(
-          onTap: () {
-            if (klik) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Transaksi(),
-                  ));
-            }
-          },
-          child: Container(
-            margin: const EdgeInsets.only(),
-            height: 45,
-            color: klik
-                ? const Color.fromARGB(255, 25, 2, 63)
-                : const Color.fromARGB(255, 208, 208, 208),
-            child: Center(
-              child: Text(
-                "Bayar Sekarang",
-                style: GoogleFonts.poppins(
-                  fontSize: 15,
-                  color: klik ? Colors.yellow : Colors.grey,
+        child: BlocBuilder<PemesananCubit, List<String>>(
+          builder: (context, state) {
+            return InkWell(
+              onTap: () {
+                if (klik) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Transaksi(
+                          transaksi: TransaksiModels(
+                              gambar: gambar,
+                              pembelian: state.length,
+                              noTicket: state.join(', '),
+                              hargaKursi: gambar.price * state.length,
+                              biayaLayanan:
+                                  gambar.biayaLangganan * state.length,
+                                  ),
+                        ),
+                      ));
+                }
+              },
+              child: Container(
+                margin: const EdgeInsets.only(),
+                height: 45,
+                color: klik
+                    ? const Color.fromARGB(255, 25, 2, 63)
+                    : const Color.fromARGB(255, 208, 208, 208),
+                child: Center(
+                  child: Text(
+                    "Bayar Sekarang",
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      color: klik ? Colors.yellow : Colors.grey,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       );
     }

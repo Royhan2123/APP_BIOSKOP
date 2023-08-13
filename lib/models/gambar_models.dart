@@ -6,6 +6,7 @@ class GambarModels extends Equatable {
   final String imageBintang;
   final String desc;
   final String name;
+  final String hari;
   final String jalan;
   final String jalan1;
   final String jalan2;
@@ -26,6 +27,7 @@ class GambarModels extends Equatable {
   final String namaTempat2;
   final String namaTempat3;
   final String genre;
+  final int biayaLangganan;
   final double rating;
   final String ratingUsia;
   final int penonton;
@@ -33,10 +35,12 @@ class GambarModels extends Equatable {
   final int price1;
   final int price2;
   final int price3;
+  final String namaOrder;
   final String km;
   final String km1;
   final String km2;
   final String km3;
+  final String studio;
   final String nonton;
   final String nonton1;
   final String namaNonton;
@@ -58,16 +62,19 @@ class GambarModels extends Equatable {
       this.desc = "",
       this.name = "",
       this.tanggal = "",
+      this.biayaLangganan = 0,
       this.jalan = "",
       this.jalan1 = "",
       this.km = "",
       this.km1 = "",
       this.km2 = "",
       this.km3 = "",
+      this.hari = "",
       this.nonton = "",
       this.nonton1 = "",
       this.namaNonton = "",
       this.namaNonton1 = "",
+      this.studio = "",
       this.jalan2 = "",
       this.jalan3 = "",
       this.imageArtis = "",
@@ -81,6 +88,7 @@ class GambarModels extends Equatable {
       this.price2 = 0,
       this.price3 = 0,
       this.imageBintang = "",
+      this.namaOrder = "",
       this.namaArtis = "",
       this.namaTempat = "",
       this.namaTempat1 = "",
@@ -123,10 +131,14 @@ class GambarModels extends Equatable {
         namaArtis2: json["namaArtis2"].toString(),
         namaArtis3: json["namaArtis3"].toString(),
         namaArtis4: json["namaArtis4"].toString(),
+        namaOrder: json["namaOrder"].toString(),
         desc: json["desc"].toString(),
+        hari: json["hari"].toString(),
+        studio: json["studio"].toString(),
+        biayaLangganan: json["biayaLangganan"],
         tanggal: json["tanggal"].toString(),
         km: json["km"].toString(),
-        km1: json["km1"].toString(),  
+        km1: json["km1"].toString(),
         nonton: json["nonton"].toString(),
         nonton1: json["nonton1"].toString(),
         namaNonton: json["namaNonton"].toString(),
@@ -158,6 +170,63 @@ class GambarModels extends Equatable {
         ratingUsia: json["ratingUsia"].toString(),
       );
 
+  Map<String, dynamic> toJson() => {
+   'id' :   id,
+    'imageUrl' : imageUrl, 
+    'imageBintang' : imageBintang,
+    'desc' : desc,
+    'name' : name,
+    'hari' : hari,
+    'jalan' : jalan,
+    'jalan1' : jalan1,
+    'jalan2' : jalan2,
+    'jalan3' : jalan3,
+    'durasi' : durasi,
+    'namaArtis' : namaArtis,
+    'namaArtis1' : namaArtis1,
+    'namaArtis2' : namaArtis2,
+    'namaArtis3' : namaArtis3,
+    'namaArtis4' : namaArtis4,
+    'imageArtis' : imageArtis,
+    'imageArtis1' : imageArtis1,
+    'imageArtis2' : imageArtis2,
+    'imageArtis3' : imageArtis3,
+    'imageArtis4': imageArtis4,
+    'namaTempat' : namaTempat,
+    'namaTempat1' : namaTempat1,
+    'namaTempat2' : namaTempat2,
+    'namaTempat3' : namaTempat3,
+    'genre' : genre,
+    'biayaLangganan' : biayaLangganan,
+    'rating' : rating,
+    'ratingUsia' : ratingUsia,
+    'penonton' :penonton,
+    'price' : price,
+    'price1' : price1,
+    'price2' : price2,
+    'price3': price3,
+    'namaOrder' : namaOrder,
+    'km' : km,
+    'km1' : km1,
+    'km2' : km2,
+    'km3': km3,
+    'studio' : studio,
+    'nonton' : nonton,
+    'nonton1' : nonton1,
+    'namaNonton' : namaNonton,
+    'namaNonton1' : namaNonton1,
+    'tanggal' : tanggal,
+    'waktu' : waktu,
+    'waktu1' : waktu1,
+    'waktu2' : waktu2,
+    'waktu3' : waktu3,
+    'waktu4': waktu4,
+    'waktu5': waktu5,
+    'waktu6': waktu6,
+    'waktu7': waktu7,
+    'sutradara': sutradara,
+  };
+
   @override
   List<Object?> get props => [
         id,
@@ -166,12 +235,16 @@ class GambarModels extends Equatable {
         jalan1,
         jalan2,
         tanggal,
+        biayaLangganan,
         jalan3,
+        hari,
         imageUrl,
         penonton,
         desc,
+        studio,
         ratingUsia,
         durasi,
+        namaOrder,
         genre,
         km,
         km1,
