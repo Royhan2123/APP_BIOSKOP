@@ -1,9 +1,8 @@
-# apk_bioskop
+# APk_Bioskop
 
-A new Flutter project.
+<h2>Disini Saya Membuat sebuah aplikasi bioskop menggunakan bahasa pemograman dart dan framework flutter</h2>
 
 ## Getting Started
-
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
