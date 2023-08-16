@@ -1,4 +1,4 @@
-# APk_Bioskop
+# Apk_Bioskop
 
 <h2>Disini Saya Membuat sebuah aplikasi bioskop menggunakan bahasa pemograman dart dan framework flutter</h2>
 
